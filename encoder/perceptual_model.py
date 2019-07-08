@@ -36,7 +36,7 @@ class PerceptualModel:
         generated_image = preprocess_input(tf.image.resize_images(generated_image_tensor,
                                                                   (self.img_size, self.img_size), method=1))
         generated_img_features = self.perceptual_model(generated_image)
-
+        print(generated_img_features.shape)
         self.ref_img_features = tf.get_variable('ref_img_features', shape=generated_img_features.shape,
                                                 dtype='float32', initializer=tf.initializers.zeros())
         self.features_weight = tf.get_variable('features_weight', shape=generated_img_features.shape,
